@@ -17,7 +17,7 @@ var quill = new Quill(editor, {
   // ...
   modules: {
     // ...
-    ImageResize: {
+    imagePaste: {
       // options
     }
   }
