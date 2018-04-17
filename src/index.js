@@ -6,7 +6,6 @@ export class ImagePaste {
   }
 
   handlePaste = (e) => {
-    e.preventDefault()
     let clipboardData = e.clipboardData
     let items, item, types
     if (!clipboardData) return
@@ -14,7 +13,6 @@ export class ImagePaste {
     if (!items) return;
     item = items[0];
     types = clipboardData.types || [];
-
     for (let i = 0; i < types.length; i++) {
       if (types[i] === 'Files') {
         item = items[i];
@@ -22,6 +20,7 @@ export class ImagePaste {
       }
     }
     if (item && item.kind === 'file' && item.type.match(/^image\//i)) {
+      e.preventDefault()
       const file = item.getAsFile()
       const { addImageBlob } = this.config
       if (addImageBlob && {}.toString.call(addImageBlob) === '[object Function]') {
